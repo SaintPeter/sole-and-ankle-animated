@@ -9,6 +9,8 @@ export const COLORS = {
   },
   primary: '340deg 65% 47%',
   secondary: '240deg 60% 63%',
+  primary_highlight: '340deg 65% 27%',
+  secondary_highlight: '240deg 60% 43%',
 };
 
 export const WEIGHTS = {

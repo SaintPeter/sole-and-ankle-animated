@@ -1,3 +1,5 @@
+// noinspection CssOverwrittenProperties
+
 import { createGlobalStyle } from 'styled-components/macro';
 import { COLORS } from '../../constants';
 
@@ -71,6 +73,8 @@ html {
   --color-white: hsl(${COLORS.white});
   --color-primary: hsl(${COLORS.primary});
   --color-secondary: hsl(${COLORS.secondary});
+  --color-primary-highlight: hsl(${COLORS.primary_highlight});
+  --color-secondary-highlight: hsl(${COLORS.secondary_highlight});
   --color-gray-100: hsl(${COLORS.gray[100]});
   --color-gray-300: hsl(${COLORS.gray[300]});
   --color-gray-500: hsl(${COLORS.gray[500]});
