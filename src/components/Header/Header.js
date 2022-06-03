@@ -20,12 +20,30 @@ const Header = () => {
           <Logo />
         </LogoWrapper>
         <DesktopNav>
-          <NavLink href="/sale">Sale</NavLink>
-          <NavLink href="/new">New&nbsp;Releases</NavLink>
-          <NavLink href="/men">Men</NavLink>
-          <NavLink href="/women">Women</NavLink>
-          <NavLink href="/kids">Kids</NavLink>
-          <NavLink href="/collections">Collections</NavLink>
+          <NavLink href="/sale">
+            <NonHoverLink>Sale</NonHoverLink>
+            <HoverLink>Sale</HoverLink>
+          </NavLink>
+          <NavLink href="/new">
+            <NonHoverLink>New&nbsp;Releases</NonHoverLink>
+            <HoverLink>New&nbsp;Releases</HoverLink>
+          </NavLink>
+          <NavLink href="/men">
+            <NonHoverLink>Men</NonHoverLink>
+            <HoverLink>Men</HoverLink>
+          </NavLink>
+          <NavLink href="/women">
+            <NonHoverLink>Women</NonHoverLink>
+            <HoverLink>Women</HoverLink>
+          </NavLink>
+          <NavLink href="/kids">
+            <NonHoverLink>Kids</NonHoverLink>
+            <HoverLink>Kids</HoverLink>
+          </NavLink>
+          <NavLink href="/collections">
+            <NonHoverLink>Collections</NonHoverLink>
+            <HoverLink>Collections</HoverLink>
+          </NavLink>
         </DesktopNav>
         <MobileActions>
           <ShoppingBagButton>
@@ -114,16 +132,42 @@ const Filler = styled.div`
   }
 `;
 
+
+const NonHoverLink = styled.span`
+  display: block;
+  transition: 200ms;
+`;
+
+const HoverLink = styled(NonHoverLink)`
+  font-weight: ${WEIGHTS.bold};
+`;
+
 const NavLink = styled.a`
   font-size: 1.125rem;
   text-transform: uppercase;
   text-decoration: none;
   color: var(--color-gray-900);
   font-weight: ${WEIGHTS.medium};
+  height: 2rem;
+  
+  
+  display: flex;
+  flex-direction: column;
+  justify-self: center;
 
+  /* Hide rolled down element */
+  overflow: hidden;
+  
   &:first-of-type {
     color: var(--color-secondary);
   }
+  
+  &:hover ${NonHoverLink},
+  &:hover ${NonHoverLink} {
+    transform: translateY(-100%);
+  }
+  
 `;
+
 
 export default Header;
