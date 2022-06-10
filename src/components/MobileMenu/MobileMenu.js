@@ -65,20 +65,22 @@ const Content = styled(DialogContent)`
   padding: 24px 32px;
   display: flex;
   flex-direction: column;
-  animation: move-left 300ms cubic-bezier(.03,.84,.61,.93);
+  animation: move-left 500ms cubic-bezier(.03,.84,.61,.93);
   animation-delay: 200ms;
   animation-fill-mode: backwards;
+  transform-origin: right;
+  transform-style: preserve-3d;
   
   @keyframes move-left {
     from {
-      transform: translateX(100%);
+      transform: perspective(800px) rotateY(180deg);
     }
     to {
-      transform: translateX(0);
+      transform: perspective(800px) rotateY(0);
     }
   }
   
-  & * {
+  /*& * {
     opacity: 0;
     animation: opacity-change 300ms 350ms;
     animation-fill-mode: forwards;
@@ -92,7 +94,7 @@ const Content = styled(DialogContent)`
       }
     }
     
-  }
+  }*/
 `;
 
 const CloseButton = styled(UnstyledButton)`
