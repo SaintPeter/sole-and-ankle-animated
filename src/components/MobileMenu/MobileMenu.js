@@ -3,7 +3,7 @@ import React from 'react';
 import styled from 'styled-components/macro';
 import { DialogOverlay, DialogContent } from '@reach/dialog';
 
-import { QUERIES, WEIGHTS } from '../../constants';
+import { WEIGHTS } from '../../constants';
 
 import UnstyledButton from '../UnstyledButton';
 import Icon from '../Icon';
@@ -42,9 +42,20 @@ const Overlay = styled(DialogOverlay)`
   left: 0;
   right: 0;
   bottom: 0;
-  background: var(--color-backdrop);
+  background: var(--color-backdrop-inital);
   display: flex;
   justify-content: flex-end;
+  animation: change-opacity 300ms;
+  animation-fill-mode: forwards;
+  
+  @keyframes change-opacity {
+    from {
+      background: var(--color-backdrop-inital);
+    }
+    to {
+      background: var(--color-backdrop);
+    }
+  }
 `;
 
 const Content = styled(DialogContent)`
@@ -54,6 +65,34 @@ const Content = styled(DialogContent)`
   padding: 24px 32px;
   display: flex;
   flex-direction: column;
+  animation: move-left 300ms cubic-bezier(.03,.84,.61,.93);
+  animation-delay: 200ms;
+  animation-fill-mode: backwards;
+  
+  @keyframes move-left {
+    from {
+      transform: translateX(100%);
+    }
+    to {
+      transform: translateX(0);
+    }
+  }
+  
+  & * {
+    opacity: 0;
+    animation: opacity-change 300ms 350ms;
+    animation-fill-mode: forwards;
+    
+    @keyframes opacity-change {
+      from {
+        opacity: 0;
+      }
+      to {
+        opacity: 1;
+      }
+    }
+    
+  }
 `;
 
 const CloseButton = styled(UnstyledButton)`
