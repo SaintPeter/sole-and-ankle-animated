@@ -3,7 +3,7 @@ import React from 'react';
 import styled from 'styled-components/macro';
 import { DialogOverlay, DialogContent } from '@reach/dialog';
 
-import { WEIGHTS } from '../../constants';
+import { QUERIES, WEIGHTS } from '../../constants';
 
 import UnstyledButton from '../UnstyledButton';
 import Icon from '../Icon';
@@ -19,17 +19,17 @@ const MobileMenu = ({ isOpen, onDismiss }) => {
         </CloseButton>
         <Filler />
         <Nav>
-          <NavLink href="/sale">Sale</NavLink>
-          <NavLink href="/new">New&nbsp;Releases</NavLink>
-          <NavLink href="/men">Men</NavLink>
-          <NavLink href="/women">Women</NavLink>
-          <NavLink href="/kids">Kids</NavLink>
-          <NavLink href="/collections">Collections</NavLink>
+          <NavLink style={{'--offset': 1}} href="/sale">Sale</NavLink>
+          <NavLink style={{'--offset': 2}} href="/new">New&nbsp;Releases</NavLink>
+          <NavLink style={{'--offset': 3}} href="/men">Men</NavLink>
+          <NavLink style={{'--offset': 4}} href="/women">Women</NavLink>
+          <NavLink style={{'--offset': 5}} href="/kids">Kids</NavLink>
+          <NavLink style={{'--offset': 6}} href="/collections">Collections</NavLink>
         </Nav>
         <Footer>
-          <SubLink href="/terms">Terms and Conditions</SubLink>
-          <SubLink href="/privacy">Privacy Policy</SubLink>
-          <SubLink href="/contact">Contact Us</SubLink>
+          <SubLink style={{'--offset': 7}} href="/terms">Terms and Conditions</SubLink>
+          <SubLink style={{'--offset': 8}} href="/privacy">Privacy Policy</SubLink>
+          <SubLink style={{'--offset': 9}} href="/contact">Contact Us</SubLink>
         </Footer>
       </Content>
     </Overlay>
@@ -58,44 +58,6 @@ const Overlay = styled(DialogOverlay)`
   }
 `;
 
-const Content = styled(DialogContent)`
-  background: white;
-  width: 300px;
-  height: 100%;
-  padding: 24px 32px;
-  display: flex;
-  flex-direction: column;
-  animation: move-left 500ms cubic-bezier(.03,.84,.61,.93);
-  animation-delay: 200ms;
-  animation-fill-mode: backwards;
-  transform-origin: right;
-  transform-style: preserve-3d;
-  
-  @keyframes move-left {
-    from {
-      transform: perspective(800px) rotateY(180deg);
-    }
-    to {
-      transform: perspective(800px) rotateY(0);
-    }
-  }
-  
-  /*& * {
-    opacity: 0;
-    animation: opacity-change 300ms 350ms;
-    animation-fill-mode: forwards;
-    
-    @keyframes opacity-change {
-      from {
-        opacity: 0;
-      }
-      to {
-        opacity: 1;
-      }
-    }
-    
-  }*/
-`;
 
 const CloseButton = styled(UnstyledButton)`
   position: absolute;
@@ -138,5 +100,43 @@ const SubLink = styled.a`
   font-size: 0.875rem;
   text-decoration: none;
 `;
+
+const Content = styled(DialogContent)`
+  background: white;
+  width: 300px;
+  height: 100%;
+  padding: 24px 32px;
+  display: flex;
+  flex-direction: column;
+  animation: move-left 300ms cubic-bezier(.03,.84,.61,.93);
+  animation-delay: 200ms;
+  animation-fill-mode: backwards;
+  
+  @keyframes move-left {
+    from {
+      transform: translateX(100%);
+    }
+    to {
+      transform: translateX(0);
+    }
+  }
+  
+  & ${NavLink},
+  & ${SubLink} {
+    opacity: 0;
+    animation: opacity-change 300ms calc(300ms + var(--offset) * 50ms);
+    animation-fill-mode: forwards;
+    
+    @keyframes opacity-change {
+      from {
+        opacity: 0;
+      }
+      to {
+        opacity: 1;
+      }
+    }    
+  }
+`;
+
 
 export default MobileMenu;
